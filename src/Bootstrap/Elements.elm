@@ -29,6 +29,8 @@ module Bootstrap.Elements
 
 {-| Docs
 
+Things in here mostly take the same stuff in, and mostly it matchhes the `Html` library with the key difference being the addition of a List Property as the first argument.
+
 @docs button
 @docs form
 @docs formGroup

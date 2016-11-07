@@ -6,13 +6,10 @@ module Bootstrap.Components
         , contextBox
         )
 
-{-| Docs
+{-| This module contains some higher level widgets that are composed of the elements in `Bootstrap.Elements`. One big difference between these and the boostrap elements is the interface. Typically, things in here take very specific inputs depending on what they are, while the element functions mostly all take the same things in.
 
-@docs titleWithSub
-@docs textEntry
-@docs FormColumnSizes
-@docs contextBox
-
+# Components
+@docs titleWithSub, textEntry, FormColumnSizes, contextBox
 -}
 
 import Html exposing (Html)
@@ -22,7 +19,9 @@ import Bootstrap.Elements as Elements
 import String
 
 
-{-| Docs
+{-| Create a title with an optional subtitle.
+
+    titleWithSub "Main page title" (Just "some supplementary text")
 -}
 titleWithSub : String -> Maybe String -> Html a
 titleWithSub titleText subTextMaybe =
@@ -43,21 +42,21 @@ titleWithSub titleText subTextMaybe =
             ]
 
 
-{-| Docs
--}
 transitionEverything : List Properties.Property
 transitionEverything =
     [ Properties.HtmlAttribute <| Properties.Class "sb-transition" ]
 
 
-{-| Docs
--}
 hidden : List Properties.Property
 hidden =
     [ Properties.HtmlAttribute <| Properties.Class "sb-hidden" ]
 
 
-{-| Docs
+{-| Create a box that provides the user some styled information. It appears as
+square with some text in it, colored appropriately according to the
+`BackgroundProperty` that it receives.
+
+    contextBox "This is a message" Properties.SuccessBackground
 -}
 contextBox : String -> Properties.BackgroundProperty -> Html a
 contextBox message background =
@@ -84,7 +83,8 @@ contextBox message background =
             [ Html.text message ]
 
 
-{-| Docs TODO where do you pass in onInput? This has to change
+{-| Helpful alias for a big type signature. This is used for the `formSection`
+to allow you to override the default column widths on forms.
 -}
 type alias FormColumnSizes =
     List ( Properties.Property, Properties.Property )

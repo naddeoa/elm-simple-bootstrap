@@ -24,13 +24,13 @@ demoBox description content =
         [ Elements.column
             [ Properties.Column <| Properties.ExtraSmallColumn 12
             , Properties.Column <| Properties.MediumColumn 4
+            , Properties.Background Properties.InfoBackground
             ]
             []
             [ Elements.h3 [] [] [ Html.text description ] ]
         , Elements.column
             [ Properties.Column <| Properties.ExtraSmallColumn 12
             , Properties.Column <| Properties.MediumColumn 8
-            , Properties.Background Properties.InfoBackground
             ]
             []
             content
@@ -40,16 +40,23 @@ demoBox description content =
 view : Model -> Html Msg
 view model =
     Elements.container []
-        [ Elements.h1 [] [] [ Html.text "Demo of simple-bootstrap" ]
+        [ Elements.h1 [] [] [ Html.text "Demo of simple-bootstrap responsive components" ]
         , demoBox
             "Title with an optional subtitle"
             [ Components.titleWithSub "Simple Boostrap" <| Just "An Elm module for outputing bootstrap markup" ]
+        , demoBox
+            "Success context box"
+            [ Components.contextBox "Request succeeded!" Properties.SuccessBackground ]
+
+        , demoBox
+            "Failure context box"
+            [ Components.contextBox "Request failed!" Properties.DangerBackground]
         , demoBox
             "Forms"
             [ Elements.form []
                 []
                 [ Elements.formGroup []
-                    []
+                    [ Attributes.style [ ( "padding", "15px" ) ] ]
                     [ Components.textEntry "Field 1" "field-1" "Enter text" [] []
                     , Components.textEntry "Field 2" "field-2" "Enter text" [] []
                     ]
@@ -60,9 +67,19 @@ view model =
             [ Elements.form []
                 []
                 [ Elements.formGroup []
-                    []
-                    [ Components.textEntry "Field 1" "field-1" "Enter text" [] [ ( Properties.Column <| Properties.ExtraSmallColumn 6, Properties.Column <| Properties.ExtraSmallColumn 6 ) ]
-                    , Components.textEntry "Field 2" "field-2" "Enter text" [] [ ( Properties.Column <| Properties.ExtraSmallColumn 6, Properties.Column <| Properties.ExtraSmallColumn 6 ) ]
+                    [ Attributes.style [ ( "padding", "15px" ) ] ]
+                    [ Components.textEntry
+                        "Field 1"
+                        "field-1"
+                        "Enter text"
+                        []
+                        [ ( Properties.Column <| Properties.ExtraSmallColumn 6, Properties.Column <| Properties.ExtraSmallColumn 6 ) ]
+                    , Components.textEntry
+                        "Field 2"
+                        "field-2"
+                        "Enter text"
+                        []
+                        [ ( Properties.Column <| Properties.ExtraSmallColumn 6, Properties.Column <| Properties.ExtraSmallColumn 6 ) ]
                     ]
                 ]
             ]
