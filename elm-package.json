@@ -1,13 +1,16 @@
 {
   "version": "0.0.1",
   "summary": "Small library for easily generaing markup with bootstrap classes",
-  "repository": "https://github.com/user/project.git",
+  "repository": "https://github.com/naddeoa/elm-simple-bootstrap.git",
   "license": "BSD3",
     "source-directories": [
       "src/",
       "src/Bootstrap"
   ],
   "exposed-modules": [
+      "Bootstrap.Properties",
+      "Bootstrap.Elements",
+      "Bootstrap.Components"
   ],
   "dependencies": {
     "elm-lang/core": "4.0.5 <= v < 5.0.0",

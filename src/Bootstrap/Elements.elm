@@ -10,6 +10,10 @@ module Bootstrap.Elements
         , row
         , h1
         , h2
+        , h3
+        , h4
+        , h5
+        , h6
         , container
         , fluidContainer
         , element
@@ -24,10 +28,35 @@ module Bootstrap.Elements
         )
 
 {-| Docs
+
+@docs button
+@docs form
+@docs formGroup
+@docs formInput
+@docs formLabel
+@docs div
+@docs column
+@docs row
+@docs h1
+@docs h2
+@docs h3
+@docs h4
+@docs h5
+@docs h6
+@docs container
+@docs fluidContainer
+@docs element
+@docs table
+@docs tbody
+@docs responsiveTable
+@docs thead
+@docs td
+@docs tr
+@docs th
+@docs p
 -}
 
 import Html exposing (Html)
-import Html.Attributes as Attributes
 import Bootstrap.Properties as Properties exposing (..)
 
 
@@ -162,6 +191,34 @@ h2 properties attributes html =
 
 {-| Docs
 -}
+h3 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h3 properties attributes html =
+    element Html.h3 properties attributes html
+
+
+{-| Docs
+-}
+h4 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h4 properties attributes html =
+    element Html.h4 properties attributes html
+
+
+{-| Docs
+-}
+h5 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h5 properties attributes html =
+    element Html.h5 properties attributes html
+
+
+{-| Docs
+-}
+h6 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h6 properties attributes html =
+    element Html.h6 properties attributes html
+
+
+{-| Docs
+-}
 row : List (Html.Attribute a) -> List (Html a) -> Html a
 row attributes html =
     element Html.div [ Row ] attributes html
@@ -169,9 +226,9 @@ row attributes html =
 
 {-| Docs
 -}
-column : List (ColumnProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
+column : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 column properties attributes html =
-    element Html.div (List.map Column properties) attributes html
+    element Html.div properties attributes html
 
 
 {-| TODO make classes enum

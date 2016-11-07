@@ -13,9 +13,22 @@ module Bootstrap.Properties
         )
 
 {-| Docs
+
+
+@docs Property
+@docs ColumnProperty
+@docs ButtonProperty
+@docs AttributeProperty
+@docs TableProperty
+@docs TableRowProperty
+@docs TableCellProperty
+@docs BackgroundProperty
+@docs toAttributes
+@docs merge
+
+
 -}
 
-import String
 import Html
 import Html.Attributes as Attributes
 
@@ -39,6 +52,8 @@ type Property
     | ResponsiveTableContainer
 
 
+{-| Docs
+-}
 type BackgroundProperty
     = PrimaryBackground
     | SuccessBackground
@@ -148,6 +163,8 @@ toAttributes property =
         generateAttributes bundle
 
 
+{-| Docs
+-}
 merge : List Property -> List (Html.Attribute a) -> List (Html.Attribute a)
 merge properties attributes =
     toAttributes properties ++ attributes
