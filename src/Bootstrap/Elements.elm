@@ -31,31 +31,14 @@ module Bootstrap.Elements
 
 Things in here mostly take the same stuff in, and mostly it matchhes the `Html` library with the key difference being the addition of a List Property as the first argument.
 
-@docs button
-@docs form
-@docs formGroup
-@docs formInput
-@docs formLabel
-@docs div
-@docs column
-@docs row
-@docs h1
-@docs h2
-@docs h3
-@docs h4
-@docs h5
-@docs h6
-@docs container
-@docs fluidContainer
+# Core elements
+@docs button, form, div, h1, h2, h3, h4, h5, h6, thead, td, tr, th, p, table, tbody
+
+# Higher level elements
+@docs formGroup, formInput, formLabel, column, row, container, fluidContainer, responsiveTable
+
+# Building blocks
 @docs element
-@docs table
-@docs tbody
-@docs responsiveTable
-@docs thead
-@docs td
-@docs tr
-@docs th
-@docs p
 -}
 
 import Html exposing (Html)
@@ -63,7 +46,7 @@ import Bootstrap.Properties as Properties exposing (..)
 
 
 {-| Helper alias that represents the normal html functions that
-the elm Html module exposes.
+the elm `Html` module exposes.
 -}
 type alias StandardElmHtmlFunction a =
     List (Html.Attribute a) -> List (Html a) -> Html a
@@ -76,7 +59,10 @@ element htmlFn properties attributes html =
     htmlFn (Properties.merge (properties) attributes) html
 
 
-{-| Docs
+{-| Create a button.
+
+    button [ Properties.SuccessButton ] [] [ Html.text "Good Button" ]
+    button [ Properties.SuccessButton, Properties.LargeButton ] [] [ Html.text "Big, Good Button" ]
 -}
 button : List (ButtonProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
 button properties attributes html =

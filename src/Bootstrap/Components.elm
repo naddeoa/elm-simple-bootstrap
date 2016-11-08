@@ -6,7 +6,11 @@ module Bootstrap.Components
         , contextBox
         )
 
-{-| This module contains some higher level widgets that are composed of the elements in `Bootstrap.Elements`. One big difference between these and the boostrap elements is the interface. Typically, things in here take very specific inputs depending on what they are, while the element functions mostly all take the same things in.
+{-| This module contains some higher level widgets that are composed of the
+elements in `Bootstrap.Elements`. One big difference between these and the
+boostrap elements is the interface. Typically, things in here take very
+specific inputs depending on what they are, while the element functions mostly
+all take the same things in.
 
 # Components
 @docs titleWithSub, textEntry, FormColumnSizes, contextBox

@@ -47,10 +47,18 @@ view model =
         , demoBox
             "Success context box"
             [ Components.contextBox "Request succeeded!" Properties.SuccessBackground ]
-
         , demoBox
             "Failure context box"
-            [ Components.contextBox "Request failed!" Properties.DangerBackground]
+            [ Components.contextBox "Request failed!" Properties.DangerBackground ]
+        , demoBox
+            "Buttons"
+            [ Elements.button [] [] [ Html.text "Button" ]
+            , Elements.button [ Properties.PrimaryButton ] [] [ Html.text "Danger Button" ]
+            , Elements.button [ Properties.LargeButton ] [] [ Html.text "Big Button" ]
+            , Elements.button [ Properties.SmallButton ] [] [ Html.text "Small Button" ]
+            , Elements.button [ Properties.SuccessButton ] [] [ Html.text "Good Button" ]
+            , Elements.button [ Properties.SuccessButton, Properties.LargeButton ] [] [ Html.text "Big, Good Button" ]
+            ]
         , demoBox
             "Forms"
             [ Elements.form []
@@ -73,13 +81,19 @@ view model =
                         "field-1"
                         "Enter text"
                         []
-                        [ ( Properties.Column <| Properties.ExtraSmallColumn 6, Properties.Column <| Properties.ExtraSmallColumn 6 ) ]
+                        [ ( Properties.Column <| Properties.ExtraSmallColumn 6
+                          , Properties.Column <| Properties.ExtraSmallColumn 6
+                          )
+                        ]
                     , Components.textEntry
                         "Field 2"
                         "field-2"
                         "Enter text"
                         []
-                        [ ( Properties.Column <| Properties.ExtraSmallColumn 6, Properties.Column <| Properties.ExtraSmallColumn 6 ) ]
+                        [ ( Properties.Column <| Properties.ExtraSmallColumn 6
+                          , Properties.Column <| Properties.ExtraSmallColumn 6
+                          )
+                        ]
                     ]
                 ]
             ]
