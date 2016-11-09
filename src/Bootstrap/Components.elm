@@ -94,10 +94,20 @@ type alias FormColumnSizes =
     List ( Properties.Property, Properties.Property )
 
 
+extractAddon : Maybe String -> List (Html a)
+extractAddon addon =
+    case addon of
+        Nothing ->
+            []
+
+        Just symbol ->
+            [ Elements.div [ Properties.InputGroupAddon ] [] [ Html.text symbol ] ]
+
+
 {-| Create a text entry that can be placed inside of a form. This create a
 `formSection` with a left and right column.
 
-    textEntry "Some label" "html-id" "Placeholder value"  [...]
+    textEntry "Some label" "html-id" "Placeholder value" (Just "$") Nothing  [...]
         [(Column <| ExtraSmallColumn 4, Column ExtraSmallColumn 8)]
 
 The `[...]` are just the typical `Html.Attributes` that are in the core `Html`
@@ -107,11 +117,23 @@ second property is applied to the right hand side (the actual text box).
 
 See `formSection` docs for more details. This list is just passed into that funciton.
 -}
-textEntry : String -> String -> String -> List (Html.Attribute a) -> FormColumnSizes -> Html a
-textEntry label id placeholder attributes customSizes =
-    formSection customSizes
-        [ Elements.formLabel [] [ Attributes.for id ] [ Html.text label ] ]
-        [ Elements.formInput [] (attributes ++ [ Attributes.id id, Attributes.placeholder placeholder ]) [] ]
+textEntry : String -> String -> String -> Maybe String -> Maybe String -> List (Html.Attribute a) -> FormColumnSizes -> Html a
+textEntry label id placeholder prefix addon attributes customSizes =
+    let
+        inputHtml =
+            [ Elements.formInput [] (attributes ++ [ Attributes.id id, Attributes.placeholder placeholder ]) [] ]
+
+        inputAreaHtml =
+            case Maybe.oneOf [ prefix, addon ] of
+                Nothing ->
+                    inputHtml
+
+                _ ->
+                    [ Elements.inputGroup [] [] (extractAddon prefix ++ inputHtml ++ extractAddon addon) ]
+    in
+        formSection customSizes
+            [ Elements.formLabel [] [ Attributes.for id ] [ Html.text label ] ]
+            inputAreaHtml
 
 
 {-| Create a formSection that renders a left hand side and a right hand side.

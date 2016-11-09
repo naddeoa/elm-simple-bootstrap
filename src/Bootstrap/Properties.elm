@@ -48,6 +48,8 @@ type Property
     | FormLabel
     | FormControl
     | FormGroup
+    | InputGroup
+    | InputGroupAddon
     | HorizontalFormGroup
     | ResponsiveTableContainer
 
@@ -210,6 +212,12 @@ generateAttributeBundle property =
 
         FormGroup ->
             { classes = "form-group" }
+
+        InputGroup ->
+            { classes = "input-group" }
+
+        InputGroupAddon ->
+            { classes = "input-group-addon" }
 
         HorizontalFormGroup ->
             { classes = "form-horizontal" }

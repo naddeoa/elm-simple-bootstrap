@@ -3,9 +3,11 @@ module Bootstrap.Elements
         ( button
         , form
         , formGroup
+        , inputGroup
         , formInput
         , formLabel
         , div
+        , span
         , column
         , row
         , h1
@@ -32,10 +34,10 @@ module Bootstrap.Elements
 Things in here mostly take the same stuff in, and mostly it matchhes the `Html` library with the key difference being the addition of a List Property as the first argument.
 
 # Core elements
-@docs button, form, div, h1, h2, h3, h4, h5, h6, thead, td, tr, th, p, table, tbody
+@docs button, form, div, span, h1, h2, h3, h4, h5, h6, thead, td, tr, th, p, table, tbody
 
 # Higher level elements
-@docs formGroup, formInput, formLabel, column, row, container, fluidContainer, responsiveTable
+@docs formGroup, formInput, inputGroup, formLabel, column, row, container, fluidContainer, responsiveTable
 
 # Building blocks
 @docs element
@@ -69,18 +71,33 @@ button properties attributes html =
     element Html.button (List.map Button (BaseButton :: properties)) attributes html
 
 
-{-| Docs
+{-| Create an html form that lays its fields out horizontally. It was intended to house `formInput` elements in `formGruops`
+
+    form []
+        []
+        [ Elements.formGroup []
+            [ Attributes.style [ ( "padding", "15px" ) ] ]
+            [ Components.textEntry "Field 1" "field-1" "Enter text" [] []
+            , Components.textEntry "Field 2" "field-2" "Enter text" [] []
+            ]
+        ]
 -}
 form : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 form properties attributes html =
     element Html.form (HorizontalFormGroup :: properties) attributes html
 
 
-{-| Docs
+{-| Create a form group. It is intended to wrap a `formInput`. See `form` for an example.
 -}
 formGroup : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 formGroup properties attributes html =
     element Html.div (FormGroup :: properties) attributes html
+
+{-| Create a form group. It is intended to wrap a `formInput`. See `form` for an example.
+-}
+inputGroup : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+inputGroup properties attributes html =
+    element Html.div (InputGroup :: properties) attributes html
 
 
 {-| TODO support input-group-addon for prefix symbols
@@ -155,6 +172,11 @@ div : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 div properties attributes html =
     element Html.div properties attributes html
 
+{-| Docs
+-}
+span : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+span properties attributes html =
+    element Html.span properties attributes html
 
 {-| Docs
 -}

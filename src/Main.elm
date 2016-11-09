@@ -65,8 +65,8 @@ view model =
                 []
                 [ Elements.formGroup []
                     [ Attributes.style [ ( "padding", "15px" ) ] ]
-                    [ Components.textEntry "Field 1" "field-1" "Enter text" [] []
-                    , Components.textEntry "Field 2" "field-2" "Enter text" [] []
+                    [ Components.textEntry "Field with prefix" "field-1" "Enter text" (Just "$") Nothing [] []
+                    , Components.textEntry "Field with addon" "field-2" "Enter text" Nothing (Just ".00") [] []
                     ]
                 ]
             ]
@@ -80,6 +80,8 @@ view model =
                         "Field 1"
                         "field-1"
                         "Enter text"
+                        Nothing
+                        Nothing
                         []
                         [ ( Properties.Column <| Properties.ExtraSmallColumn 6
                           , Properties.Column <| Properties.ExtraSmallColumn 6
@@ -89,6 +91,8 @@ view model =
                         "Field 2"
                         "field-2"
                         "Enter text"
+                        Nothing
+                        Nothing
                         []
                         [ ( Properties.Column <| Properties.ExtraSmallColumn 6
                           , Properties.Column <| Properties.ExtraSmallColumn 6
