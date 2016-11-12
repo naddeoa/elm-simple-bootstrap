@@ -25,7 +25,7 @@ electron:
 
 server:PORT=8001
 server:HOST=0.0.0.0
-server:WEBPACK_PORT=8314
+server:WEBPACK_PORT=8315
 server:
 	./node_modules/.bin/webpack-dev-server --host $(HOST) --port $(WEBPACK_PORT) --content-base /build/ &
 	@echo "http://$(HOST):$(PORT)/src/static/index.html"
