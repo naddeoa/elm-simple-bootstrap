@@ -67,6 +67,7 @@ view model =
                     [ Attributes.style [ ( "padding", "15px" ) ] ]
                     [ Components.textEntry "Field with prefix" "field-1" "Enter text" (Just "$") Nothing [] []
                     , Components.textEntry "Field with addon" "field-2" "Enter text" Nothing (Just ".00") [] []
+                    , Components.textEntry "Addon and prefix" "field-3" "Enter dollar percentage" (Just "$") (Just "%") [] []
                     ]
                 ]
             ]

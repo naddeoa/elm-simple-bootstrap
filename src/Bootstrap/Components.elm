@@ -4,6 +4,7 @@ module Bootstrap.Components
         , textEntry
         , FormColumnSizes
         , contextBox
+        , formSection
         )
 
 {-| This module contains some higher level widgets that are composed of the
@@ -13,7 +14,7 @@ specific inputs depending on what they are, while the element functions mostly
 all take the same things in.
 
 # Components
-@docs titleWithSub, textEntry, FormColumnSizes, contextBox
+@docs titleWithSub, textEntry, FormColumnSizes, contextBox, formSection
 -}
 
 import Html exposing (Html)
@@ -26,6 +27,9 @@ import String
 {-| Create a title with an optional subtitle.
 
     titleWithSub "Main page title" (Just "some supplementary text")
+
+This creates somethig like an `h1` tag with a `small` section under to the right
+of it.
 -}
 titleWithSub : String -> Maybe String -> Html a
 titleWithSub titleText subTextMaybe =
@@ -107,8 +111,14 @@ extractAddon addon =
 {-| Create a text entry that can be placed inside of a form. This create a
 `formSection` with a left and right column.
 
-    textEntry "Some label" "html-id" "Placeholder value" (Just "$") Nothing  [...]
-        [(Column <| ExtraSmallColumn 4, Column ExtraSmallColumn 8)]
+    textEntry
+        "Some label"
+        "html-id"
+        "Placeholder value"
+        (Just "$")
+        (Just "%")
+        [...]
+        [(Column <| ExtraSmallColumn 4, Column <| ExtraSmallColumn 8)]
 
 The `[...]` are just the typical `Html.Attributes` that are in the core `Html`
 library already. The second list is a pair of ( Property, Property ), where the

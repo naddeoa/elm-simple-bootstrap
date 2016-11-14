@@ -12,3 +12,8 @@ module in this library.
 
 This is the first version of my first package, so things will
 definitely change
+
+## See also
+* [Elm docs][elm-docs] page
+
+[elm-docs]: http://package.elm-lang.org/packages/naddeoa/elm-simple-bootstrap

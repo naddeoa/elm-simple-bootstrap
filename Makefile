@@ -5,13 +5,14 @@ elm-doc-bundle = build/docs.js
 webpack-bundle = build/webpack-bundle.js
 electron-entry-point = ./static/electron.js
 
-.PHONY: elm-reactor default electron server
+.PHONY: elm-reactor default electron server elm
 
-default: webpack-dev-server
+default: elm
 
 elm: $(elm-bundle)
 
 $(elm-bundle): $(source)
+	@mkdir -p build
 	elm-make $(source) --output $(elm-bundle) --docs=$(elm-doc-bundle)
 
 $(webpack-bundle): $(source)

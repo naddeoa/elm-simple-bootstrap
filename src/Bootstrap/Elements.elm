@@ -44,7 +44,7 @@ Things in here mostly take the same stuff in, and mostly it matchhes the `Html` 
 -}
 
 import Html exposing (Html)
-import Bootstrap.Properties as Properties exposing (..)
+import Bootstrap.Properties as Properties
 
 
 {-| Helper alias that represents the normal html functions that
@@ -56,7 +56,7 @@ type alias StandardElmHtmlFunction a =
 
 {-| Docs private
 -}
-element : StandardElmHtmlFunction a -> List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+element : StandardElmHtmlFunction a -> List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 element htmlFn properties attributes html =
     htmlFn (Properties.merge (properties) attributes) html
 
@@ -66,9 +66,9 @@ element htmlFn properties attributes html =
     button [ Properties.SuccessButton ] [] [ Html.text "Good Button" ]
     button [ Properties.SuccessButton, Properties.LargeButton ] [] [ Html.text "Big, Good Button" ]
 -}
-button : List (ButtonProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
+button : List (Properties.ButtonProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
 button properties attributes html =
-    element Html.button (List.map Button (BaseButton :: properties)) attributes html
+    element Html.button (List.map Properties.Button (Properties.BaseButton :: properties)) attributes html
 
 
 {-| Create an html form that lays its fields out horizontally. It was intended to house `formInput` elements in `formGruops`
@@ -82,147 +82,147 @@ button properties attributes html =
             ]
         ]
 -}
-form : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+form : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 form properties attributes html =
-    element Html.form (HorizontalFormGroup :: properties) attributes html
+    element Html.form (Properties.HorizontalFormGroup :: properties) attributes html
 
 
 {-| Create a form group. It is intended to wrap a `formInput`. See `form` for an example.
 -}
-formGroup : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+formGroup : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 formGroup properties attributes html =
-    element Html.div (FormGroup :: properties) attributes html
+    element Html.div (Properties.FormGroup :: properties) attributes html
 
 {-| Create a form group. It is intended to wrap a `formInput`. See `form` for an example.
 -}
-inputGroup : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+inputGroup : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 inputGroup properties attributes html =
-    element Html.div (InputGroup :: properties) attributes html
+    element Html.div (Properties.InputGroup :: properties) attributes html
 
 
 {-| TODO support input-group-addon for prefix symbols
 -}
-formInput : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+formInput : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 formInput properties attributes html =
-    element Html.input (FormControl :: properties) attributes html
+    element Html.input (Properties.FormControl :: properties) attributes html
 
 
 {-| Docs
 -}
-formLabel : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+formLabel : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 formLabel properties attributes html =
-    element Html.label (FormLabel :: properties) attributes html
+    element Html.label (Properties.FormLabel :: properties) attributes html
 
 
 {-| Docs
 -}
-table : List (TableProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
+table : List (Properties.TableProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
 table properties attributes html =
-    element Html.table (List.map Table (BaseTable :: properties)) attributes html
+    element Html.table (List.map Properties.Table (Properties.BaseTable :: properties)) attributes html
 
 
 {-| Docs
 -}
-responsiveTable : List (TableProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
+responsiveTable : List (Properties.TableProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
 responsiveTable properties attributes html =
-    div [ ResponsiveTableContainer ]
+    div [ Properties.ResponsiveTableContainer ]
         []
-        [ element Html.table (List.map Table (BaseTable :: properties)) attributes html
+        [ element Html.table (List.map Properties.Table (Properties.BaseTable :: properties)) attributes html
         ]
 
 
 {-| Docs
 -}
-tbody : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+tbody : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 tbody properties attributes html =
     element Html.tbody properties attributes html
 
 
 {-| Docs
 -}
-thead : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+thead : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 thead properties attributes html =
     element Html.thead properties attributes html
 
 
 {-| Docs
 -}
-tr : List (TableRowProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
+tr : List (Properties.TableRowProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
 tr properties attributes html =
-    element Html.table (List.map TableRow properties) attributes html
+    element Html.table (List.map Properties.TableRow properties) attributes html
 
 
 {-| Docs
 -}
-td : List (TableCellProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
+td : List (Properties.TableCellProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
 td properties attributes html =
-    element Html.td (List.map TableCell properties) attributes html
+    element Html.td (List.map Properties.TableCell properties) attributes html
 
 
 {-| Docs
 -}
-th : List (TableCellProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
+th : List (Properties.TableCellProperty) -> List (Html.Attribute a) -> List (Html a) -> Html a
 th properties attributes html =
-    element Html.th (List.map TableCell properties) attributes html
+    element Html.th (List.map Properties.TableCell properties) attributes html
 
 
 {-| Docs
 -}
-div : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+div : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 div properties attributes html =
     element Html.div properties attributes html
 
 {-| Docs
 -}
-span : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+span : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 span properties attributes html =
     element Html.span properties attributes html
 
 {-| Docs
 -}
-p : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+p : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 p properties attributes html =
     element Html.p properties attributes html
 
 
 {-| Docs
 -}
-h1 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h1 : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 h1 properties attributes html =
     element Html.h1 properties attributes html
 
 
 {-| Docs
 -}
-h2 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h2 : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 h2 properties attributes html =
     element Html.h2 properties attributes html
 
 
 {-| Docs
 -}
-h3 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h3 : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 h3 properties attributes html =
     element Html.h3 properties attributes html
 
 
 {-| Docs
 -}
-h4 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h4 : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 h4 properties attributes html =
     element Html.h4 properties attributes html
 
 
 {-| Docs
 -}
-h5 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h5 : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 h5 properties attributes html =
     element Html.h5 properties attributes html
 
 
 {-| Docs
 -}
-h6 : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+h6 : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 h6 properties attributes html =
     element Html.h6 properties attributes html
 
@@ -231,12 +231,12 @@ h6 properties attributes html =
 -}
 row : List (Html.Attribute a) -> List (Html a) -> Html a
 row attributes html =
-    element Html.div [ Row ] attributes html
+    element Html.div [ Properties.Row ] attributes html
 
 
 {-| Docs
 -}
-column : List (Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
+column : List (Properties.Property) -> List (Html.Attribute a) -> List (Html a) -> Html a
 column properties attributes html =
     element Html.div properties attributes html
 
@@ -245,11 +245,11 @@ column properties attributes html =
 -}
 container : List (Html.Attribute a) -> List (Html a) -> Html a
 container attributes html =
-    element Html.div [ Container ] attributes html
+    element Html.div [ Properties.Container ] attributes html
 
 
 {-| TODO make classes enum
 -}
 fluidContainer : List (Html.Attribute a) -> List (Html a) -> Html a
 fluidContainer attributes html =
-    element Html.div [ Container ] attributes html
+    element Html.div [ Properties.Container ] attributes html

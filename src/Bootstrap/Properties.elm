@@ -33,7 +33,25 @@ import Html
 import Html.Attributes as Attributes
 
 
-{-| Docs
+{-| This is the main type of the bootstraplibrary. Utlimately, everything that
+is mapped onto `Html` elements is represented as a proeprty. Something like
+`Property.Row` will get mapped onto the class string `row` so that the twitter
+bootstrap CSS treats it as a row. You probably should't start with this type
+though. You'll probably start with one of the types in `Bootstrap.Elements` or
+`Bootstrap.Components` and give it whatever it can take. For example, if you
+need a button then you'll use `Bootstrap.Elements.button`, whose first argument
+happens to be a `ButtonProperty`. Then, you'll just pass it whateer
+`ButtonProperty` you want.
+
+If you want to make something more general then you may use
+`Bootstrap.Elements.elements`. You can create `button` yourself in that way. It
+would look like the following.
+
+    Bootstrap.Elements.element Html.button (List.map Properties.Button (Properties.BaseButton :: properties)) attributes html
+
+It is just a fancy wrapper over a function that maps a bunch of `ButtonProperty`
+into `Button` and passes it into `Bootstrap.Elements.element`.
+
 -}
 type Property
     = Column ColumnProperty
@@ -54,7 +72,8 @@ type Property
     | ResponsiveTableContainer
 
 
-{-| Docs
+{-| This type reprents the different background classes in bootstrap css. i.w.,
+bg-danger, bg-info, etc.
 -}
 type BackgroundProperty
     = PrimaryBackground
@@ -64,7 +83,15 @@ type BackgroundProperty
     | DangerBackground
 
 
-{-| Docs
+{-| This type allows you to specify aritrary attributes from the `Html` library.
+This is needed because all of the properties in bootstrap have to map back to
+html classes in the end. That means that internally, this library has to use
+`Html.Attributes.class` to set class values. That also means that I end upd
+clobering your class values in the process.
+
+It is very important that you specify html classes with `Properties.Class
+"my-class"` instead of using attriutes. Otherwise, class that comes second
+(mine) will win and the one you provdided will be lost.
 -}
 type AttributeProperty
     = Class String
