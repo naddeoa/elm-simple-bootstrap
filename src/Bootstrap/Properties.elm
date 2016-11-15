@@ -9,7 +9,7 @@ module Bootstrap.Properties
         , TableCellProperty(..)
         , BackgroundProperty(..)
         , toAttributes
-        , merge
+        , combineToAttributes
         )
 
 {-| Docs
@@ -24,7 +24,7 @@ module Bootstrap.Properties
 @docs TableCellProperty
 @docs BackgroundProperty
 @docs toAttributes
-@docs merge
+@docs combineToAttributes
 
 
 -}
@@ -63,6 +63,7 @@ type Property
     | Background BackgroundProperty
     | Row
     | Container
+    | FluidContainer
     | FormLabel
     | FormControl
     | FormGroup
@@ -181,21 +182,21 @@ generateAttributes bundle =
     [ Attributes.class bundle.classes ]
 
 
-{-| Docs
+{-| Convert a `List Property` to a `List (Html.Attribute a)`. Everything in this module is a
+`Property` that ultimately has to turn into some kind of `Html.Attribute` in order to be output onto
+the dom in Elm. What attributes each property turn into is an implementation detail. Some may just
+map to a single class, some may map to multiple different attributes.
 -}
 toAttributes : List Property -> List (Html.Attribute a)
 toAttributes property =
-    let
-        bundle =
-            generateAttributeBundles property
-    in
-        generateAttributes bundle
+    generateAttributes <| generateAttributeBundles property
 
 
-{-| Docs
+{-| Convenience function that calls `toAttributes` and then concats the resulting list with the
+supplied `List (Html.Attribute a)`.
 -}
-merge : List Property -> List (Html.Attribute a) -> List (Html.Attribute a)
-merge properties attributes =
+combineToAttributes : List Property -> List (Html.Attribute a) -> List (Html.Attribute a)
+combineToAttributes properties attributes =
     toAttributes properties ++ attributes
 
 
@@ -230,6 +231,9 @@ generateAttributeBundle property =
 
         Container ->
             { classes = "container" }
+
+        FluidContainer ->
+            { classes = "container-fluid" }
 
         FormLabel ->
             { classes = "control-label" }

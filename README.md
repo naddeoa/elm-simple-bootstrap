@@ -14,6 +14,8 @@ This is the first version of my first package, so things will
 definitely change
 
 ## See also
-* [Elm docs][elm-docs] page
+* [Elm docs][elm_docs] page
+* [Boostrap CSS documentation][bootstrap_documentation] page. Currently, this library is based on v 3.3.7 of Bootstrap.
 
-[elm-docs]: http://package.elm-lang.org/packages/naddeoa/elm-simple-bootstrap
+[elm_docs]: http://package.elm-lang.org/packages/naddeoa/elm-simple-bootstrap
+[bootstrap_documentation]: http://getbootstrap.com/css/
